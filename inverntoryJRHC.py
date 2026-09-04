@@ -8,10 +8,10 @@ def load_inventory():
     if os.path.exists(DATA_FILE_SCANNED):
         with open(DATA_FILE_SCANNED, "r") as file:
             return json.load(file)
-        return{}
+    return{}
 
 
-def save_memory(inventory):
+def save_inventory(inventory):
     with open(DATA_FILE_SCANNED, "w") as file:
         json.dump(inventory, file, indent=4)
 
@@ -29,8 +29,8 @@ while True:
 
     if barcode.lower() == "exit":
         save_inventory(inventory)
-    print("Inventory saved. exiting...")
-    break
+        print("Inventory saved. exiting...")
+        gbreak
 
     if barcode == "":
         continue
