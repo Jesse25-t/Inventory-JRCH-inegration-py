@@ -30,7 +30,11 @@ while True:
     if barcode.lower() == "exit":
         save_inventory(inventory)
         print("Inventory saved. exiting...")
-        gbreak
+        break
+
+    if barcode != format(int):
+        print("Barcode must be number values")
+        continue
 
     if barcode == "":
         continue
@@ -44,6 +48,7 @@ while True:
         print(f"item: {item_name}")
         print(f"Barcode: {barcode}")
         print(f"times scanned: {count}")
+        print()
 
     else:
 
@@ -61,3 +66,5 @@ while True:
         print(f"Added: {item_name}")
         print(f"Barcode: {barcode}")
         print(f"Item amount: {count}")
+        print("====================")
+        print()
