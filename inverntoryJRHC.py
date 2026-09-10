@@ -1,7 +1,11 @@
 import json
 import os
+import sys
+
 
 DATA_FILE_SCANNED = "inventory.json"
+USED_LOG_FILE = "used_log.json"
+LOW_STOCK_THRESHOLD = 2
 
 
 def load_inventory():
@@ -16,7 +20,40 @@ def save_inventory(inventory):
         json.dump(inventory, file, indent=4)
 
 
+def send_msg(msg_type, **kwargs):
+    payload = {"type": msg_type, **kwargs}
+    print(json.dump(payload), flush=True)
+
+
+def check_low_inventory(inventory, barcode):
+    item = inventory[barcode]
+    threshold = item.get("threshold", LOW_STOCK_THRESHOLD)
+    if inventory["count"] <= threshold:
+        send_msg("low_stock", barcode=[barcode], name=item["item_name"], count=item["count"], threshold="threshold")
+
+
+def handle_scan():
+    pass
+
+def handle_adjust():
+    pass
+
+def handle_use():
+    pass
+
+def handle_set_threshold():
+    pass
+
+def handle_get_inventory():
+    pass
+
+
+def main():
+    pass
+
+
 inventory = load_inventory()
+
 
 print("===================================")
 print("INVENTORY SCANNER MADE BY JESSE: WELCOME")
